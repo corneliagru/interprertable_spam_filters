@@ -143,7 +143,7 @@ ggplot(tab, mapping = aes(x = .data$task_id, y = .data[["classif.auc"]], fill = 
   facet_wrap(vars(.data$learner_id), scales = "free_x") +
   theme(legend.position = "none") +
   ylab("AUC") +
-  ggtitle("Performance when removing 'geroge', 'hp' and 'num650'")
+  ggtitle("Performance when removing 'george', 'hp' and 'num650'")
 
 
 ggsave("plots/model_comparison_personalized.png", height = 12, width = 18, units = "cm")
