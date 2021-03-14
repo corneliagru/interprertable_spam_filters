@@ -36,8 +36,8 @@ print(duration)
 
 print(bm)
 
-model_names <- c("featureless","naive_bayes", "rpart",
-                 "glmnet", "knn", "log_reg",  "svm",
+model_names <- c("featureless","naive bayes", "rpart",
+                 "glmnet", "knn", "log reg",  "svm",
                   "ranger", "xgboost")
 
 
@@ -68,6 +68,7 @@ ggplot(tab, mapping = aes(x = .data$nr, y = .data[["classif.auc"]],
   ggtitle("Model Comparison")
 
 ggsave("plots/model_comparison.png", height = 12, width = 18, units = "cm")
+ggsave("plots/model_comparison.pdf", height = 12, width = 18, units = "cm")
 
 
 

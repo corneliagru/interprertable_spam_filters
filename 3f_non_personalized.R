@@ -23,6 +23,7 @@ plot(imp_np) +
 
 
 ggsave("plots/imp_ranger_non_pers.png", height = 9, width = 12, units = "cm")
+ggsave("plots/imp_ranger_non_pers.pdf", height = 9, width = 12, units = "cm")
 
 # svm ---------------------------------------------------------------------
 
@@ -49,6 +50,7 @@ plot(imp_svm_np) +
   scale_y_discrete("", limits = imp_svm_np$results[15:1,"feature"]) #
 
 ggsave("plots/imp_svm_non_pers.png", height = 9, width = 12, units = "cm")
+ggsave("plots/imp_svm_non_pers.pdf", height = 9, width = 12, units = "cm")
 
 
 
@@ -76,6 +78,7 @@ ggplot(data_plt_imp_svm_np, aes(y = feature, x = importance)) +
 
 
 ggsave("plots/imp_svm_non_pers.png", height = 9, width = 12, units = "cm")
+ggsave("plots/imp_svm_non_pers.pdf", height = 9, width = 12, units = "cm")
 
 
 

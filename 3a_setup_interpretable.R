@@ -27,13 +27,11 @@ spam <- as.data.frame(spam)
 
 #models
 lrn_ranger_tuned$train(task)
-#lrn_xgb_tuned$train(task)
 lrn_svm_tuned$train(task)
 
 
 rng <- lrn_ranger_tuned$model 
 svm <- lrn_svm_tuned$model
-#xgb <- lrn_xgb_tuned$model
 
 
 predictor = Predictor$new(rng,

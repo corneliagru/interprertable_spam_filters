@@ -23,7 +23,12 @@ plot(imp_svm) +
   scale_x_continuous("Feature importance (loss: 1 - AUC)") +
   scale_y_discrete("" ) + #, limits = imp_svm$results[30:1,"feature"]) +
   ggtitle("SVM personalized") +
-  theme_minimal()
+  theme_minimal()+
+  scale_y_discrete("", limits = imp_svm$results[15:1,"feature"])
+
+ggsave("plots/imp_svm_pers.pdf", height = 9, width = 12, units = "cm")
+
+
 
 save(imp_svm, file = "data/results/imp_svm.RData")
 
@@ -49,12 +54,13 @@ ggplot(data_plt_imp_svm_p, aes(y = feature, x = importance)) +
   geom_point(size = 1) +
   xlab("Feature importance (loss: 1 - AUC)") +
   ylab("") +
-  xlim(0, 13) +
+  #xlim(0, 13) +
   ggtitle("SVM personalized") + scale_y_discrete("", limits = data_plt_imp_svm_p[15:1,"feature"])
 
 
 
 ggsave("plots/imp_svm_pers.png", height = 9, width = 12, units = "cm")
+ggsave("plots/imp_svm_pers.pdf", height = 9, width = 12, units = "cm")
 
 
 
@@ -151,6 +157,7 @@ plt_svm_ale
 
 
 ggsave("plots/ale_svm.png", height = 15, width = 20, units = "cm")
+ggsave("plots/ale_svm.pdf", height = 15, width = 20, units = "cm")
 
 
 c("address", "addresses", "all", "business", "capitalAve", 
@@ -166,3 +173,15 @@ c("address", "addresses", "all", "business", "capitalAve",
 
 
 
+
+# ale receive -------------------------------------------------------------
+
+
+#receive
+ale_receive <- FeatureEffect$new(pred_svm, "receive", method = "ale", grid.size = 50) 
+
+plot(ale_receive)
+ggsave("plots/ale_svm_receive.pdf", height = 9, width = 12, units = "cm")
+
+
+spam[spam$receive>2, ]

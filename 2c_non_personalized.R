@@ -1,6 +1,7 @@
 library(mlr3verse)
 library(ggplot2)
 set.seed(1234)
+theme_set(theme_minimal())
 
 
 # task --------------------------------------------------------------------
@@ -136,7 +137,7 @@ tab$nr = as.character(tab$nr)
 # try own plot
 ggplot(tab, mapping = aes(x = .data$task_id, y = .data[["classif.auc"]], fill = .data$task_id)) +
   geom_boxplot() +
-  scale_fill_manual(values = c("#397f78", "#7ac0b9"))+
+  scale_fill_manual(values = c("#397f78", "#7ac0b9")) +
   labs(x = "") +
   #scale_x_discrete(labels = rev(unique(tab$task_id))) +
   facet_wrap(vars(.data$learner_id), scales = "free_x") +
@@ -146,4 +147,5 @@ ggplot(tab, mapping = aes(x = .data$task_id, y = .data[["classif.auc"]], fill = 
 
 
 ggsave("plots/model_comparison_personalized.png", height = 12, width = 18, units = "cm")
+ggsave("plots/model_comparison_personalized.pdf", height = 12, width = 18, units = "cm")
 

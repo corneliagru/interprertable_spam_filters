@@ -7,8 +7,8 @@ set.seed(1234)
 # initialize task with data
 task <- tsk("spam")
 spam <- task$data()
-
-write.csv2(spam, "spam.csv")
+spam <- as.data.frame(spam)
+#write.csv2(spam, "spam.csv")
 prop.table(table(spam$type))
 
 colnames(spam)
@@ -34,10 +34,12 @@ for (variable in colnames(spam)[1:10]) {
 
 
 
+cor(as.numeric(as.character(spam$type)), spam[-which(names(spam) == "type")])
 
 
+cor_target <- as.data.frame(cor(spam[-1], as.numeric(spam$type)))
 
-
+cor_target <- cor_target[order(cor_target),] 
 
 # descriptives ------------------------------------------------------------
 
@@ -77,3 +79,16 @@ res <- cor(spam[,c(
 corrplot(res, order = "hclust")
 
 corrplot.mixed(res, order = "hclust")
+
+
+
+
+
+# surrogate tree check ----------------------------------------------------
+
+library(rpart)
+
+
+tree <- rpart(type~., data = spam,control = list(maxdepth = 2) )
+plot(tree)
+text(tree, use.n=TRUE, all=TRUE, cex=.8)
